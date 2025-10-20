@@ -28,6 +28,20 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void signUp(MemberDTO member) {
+		// 꼼꼼하게 검증
+		// 유효값 검증
+		if(member == null) {
+			return;
+		}
+		
+		if(member.getUserId().length() > 20) {
+			return;
+		}
+		
+		if(member.getUserId() == null || member.getUserId().trim().isEmpty() || member.getUserPwd() == null || member.getUserPwd().trim().isEmpty()) {
+			return;
+		}
+		
 	}
 
 	@Override

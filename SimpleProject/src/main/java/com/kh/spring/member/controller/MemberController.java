@@ -192,7 +192,7 @@ public class MemberController {
 		*/
 		
 		log.info("{}", member);
-		
+		memberService.signUp(member);
 		return "redirect:join";
 	}
 	
