@@ -66,16 +66,21 @@
             </div>
             <div id="header_1_center"></div>
             <div id="header_1_right">
-                <!-- 로그인 전 -->
-                <a href="">회원가입</a>
-                <a data-toggle="modal" data-target="#loginModal">로그인</a> <!-- 모달의 원리 : 이 버튼 클릭시 data-targer에 제시되어있는 해당 아이디의 div요소를 띄워줌 -->
+               
+               	<c:choose>
+               	<c:when test="${ empty sessionScope.loginMember }">
+                	<!-- 로그인 전 -->
+               	 	<a href="join">회원가입</a>
+                	<a data-toggle="modal" data-target="#loginModal">로그인</a> <!-- 모달의 원리 : 이 버튼 클릭시 data-targer에 제시되어있는 해당 아이디의 div요소를 띄워줌 -->
+               	</c:when>
+               	<c:otherwise>
+                	<!-- 로그인 후 -->
+               		<label>${ sessionScope.loginMember.userName }님 환영합니다</label> &nbsp;&nbsp;
+	                <a href="">마이페이지</a>
+	                <a href="logout">로그아웃</a>
+                </c:otherwise>
+                </c:choose>
                 
-                <!-- 로그인 후 -->
-                <!-- 
-                    <lable>홍길동님 환영합니다</label> &nbsp;&nbsp;
-                    <a href="">마이페이지</a>
-                    <a href="">로그아웃</a>
-                -->
             </div>
         </div>
         <div id="header_2">
@@ -98,13 +103,13 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
         
-                <form action="로그인요청핸들러" method="post">
+                <form action="login" method="post">
                     <!-- Modal body -->
                     <div class="modal-body">
                         <label for="userId" class="mr-sm-2">ID : </label>
-                        <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter ID" id="userId" name=""> <br>
+                        <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter ID" id="userId" name="userId"> <br>
                         <label for="userPwd" class="mr-sm-2">Password : </label>
-                        <input type="password" class="form-control mb-2 mr-sm-2" placeholder="Enter Password" id="userPwd" name="">
+                        <input type="password" class="form-control mb-2 mr-sm-2" placeholder="Enter Password" id="userPwd" name="userPwd">
                     </div>
                            
                     <!-- Modal footer -->

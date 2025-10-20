@@ -2,3 +2,24 @@
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+
+
+	<typeAliases>
+
+	</typeAliases>
+
+	<!-- 
+		environments, dataSource => DB연결정보
+	-->
+	
+
+	<mappers>
+		<mapper resource="/mapper/member-mapper.xml" />
+	</mappers>
+
+</configuration>
