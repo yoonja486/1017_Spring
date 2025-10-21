@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.spring.member.model.dto.MemberDTO;
@@ -237,6 +238,14 @@ public class MemberController {
 		
 		return "redirect:mypage";
 				
+	}
+	
+	@PostMapping("delete")
+	public String delete(@RequestParam(value="userPwd") String userPwd, HttpSession session) {
+		
+		memberService.delete(userPwd, session);
+		
+		return "redirect:/";
 	}
 	
 	

@@ -2,6 +2,7 @@ package com.kh.spring.member.model.service;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kh.spring.exception.AuthenticationException;
@@ -157,8 +158,38 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void delete(MemberDTO member) {
+	public void delete(String userPwd, HttpSession session) {
+		// 제 1원칙 : 기능이 동작해야함
 		
+		MemberDTO sessionMember = ((MemberDTO)session.getAttribute("loginMember"));
+		
+		if(sessionMember == null) {
+			throw new AuthenticationException("로그인부터 해라~");
+		}
+		
+		if(!passwordEncoder.matches(userPwd, sessionMember.getUserPwd())) {
+			throw new AuthenticationException("비밀번호가 일치하지 않습니다.");
+		}
+		
+		// DELETE FROM MEMBER WHERE USER_ID = 현재 로그인된 사용자의 아이디
+		int result = mapper.delete(sessionMember.getUserId());
+		
+		if(result != 1) {
+			throw new AuthenticationException("관리자에게 문의하세요.");
+		}
+		
+		session.removeAttribute("loginMember");
+
+		// 리팩토링
+		/*
+		 * 쉬운데 어려움(복잡함)
+		 * 
+		 * 스프링을 이용한 기능 구현 ==> 숙제(주말까지)
+		 * 
+		 * DynamicWebProject 회원파트 == Spring버전으로 다시 만들기
+		 * 
+		 * 화면 다 있고, 테이블 있고, SQL문 다 있음 ==> Service단 및 예외처리를 신경써보자
+		 */
 	}
 
 }

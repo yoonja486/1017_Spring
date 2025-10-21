@@ -21,6 +21,6 @@ public interface MemberService {
 	void update(MemberDTO member, HttpSession session);
 	
 	// 탈퇴
-	void delete(MemberDTO member);
+	void delete(String userPwd, HttpSession session);
 
 }
