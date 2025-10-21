@@ -193,8 +193,53 @@ public class MemberController {
 		
 		log.info("{}", member);
 		memberService.signUp(member);
-		return "redirect:join";
+		return "main";
 	}
+	
+	@GetMapping("mypage")
+	public String myPage() {
+		return "member/my_page";
+	}
+	
+	@PostMapping("edit")
+	public String edit(MemberDTO member, HttpSession session) {
+		
+		/*
+		 * 1_1) 404 발생 : mapping값 확인하기
+		 * org.springframework.web.servlet.PageNotFound
+		 * 
+		 * 1_2) 405 발생 : mapping값 잘씀 GET/POST 를 잘 못 적었을 때
+		 * 
+		 * 1_3) 필드에 값이 잘 들어왔나?	-> Key값 확인
+		 */
+		
+		// log.info("값 찍어보기 : {}", member);
+		
+		/*
+		 * 2. SQL문
+		 * UPDATE => MEMBER => PK?
+		 * ID PWD NAME EMAIL ENROLLDATE
+		 * 
+		 * 2_1) 매개변수 MemberDTO 타입의 memberId 필드 값 조건
+		 * UPDATE MEMBER SET USER_NAME = 입력한 값, EMAIL = 입력한 값
+		 * 	WHERE USER_ID = 넘어온 아이디
+		 */
+		
+		/*
+		 * Best Practice
+		 * 
+		 * 컨트롤러에서 세션관리를 담당
+		 * 서비스에는 순수 비즈니스 로직만 구현
+		 * 서비스에서 HttpSession이 필요하다면 인자로 전달
+		 */
+		
+		memberService.update(member, session);
+		
+		return "redirect:mypage";
+				
+	}
+	
+	
 	
 	
 }
