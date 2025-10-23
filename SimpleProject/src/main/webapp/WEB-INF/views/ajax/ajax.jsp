@@ -189,6 +189,30 @@
 		}
 	</script>
 	
+	<hr>
+	
+	<button class="btn btn-lg btn-primary" onclick="btn1();">버튼1</button>
+	<button class="btn btn-lg btn-secondary" onclick="btn2();">버튼2</button>
+	<script>
+		function btn1() {
+			$.ajax({
+				url : 'revol/c', type : 'post',
+				success : res => {
+					// alert(res.boardTitle);
+					console.log(res);
+				}
+			})	
+		}
+		function btn2() {
+			$.ajax({
+				url : 'revol/d',
+				success : res => {
+					// alert(res.boardTitle);
+					console.log(res);
+				}
+			})	
+		}
+	</script>
 	
 	
 	
