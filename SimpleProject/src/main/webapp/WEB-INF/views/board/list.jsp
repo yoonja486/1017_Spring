@@ -84,7 +84,7 @@
                         <td>${ board.boardTitle }</td>
                         <td>${ board.boardWriter }</td>
                         <td>${ board.count }</td>
-                        <td>${ board.createDate }</td>
+                        <td>${ board.boardCreateDate }</td>
                         <td>
                         <c:if test="${ not empty board.changeName }"> 
                         	💌

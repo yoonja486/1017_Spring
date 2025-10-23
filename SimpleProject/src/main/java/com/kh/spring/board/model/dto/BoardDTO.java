@@ -20,7 +20,7 @@ public class BoardDTO {
 	private String originName;
 	private String changeName;
 	private int count;
-	private String createDate;
+	private String boardCreateDate;
 	private String status;
 	private List<ReplyDTO> replies;
 	

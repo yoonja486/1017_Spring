@@ -3,11 +3,11 @@ package com.kh.spring.board.model.service;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
-import javax.swing.Spring;
 
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.spring.board.model.dto.BoardDTO;
+import com.kh.spring.board.model.dto.ReplyDTO;
 
 public interface BoardService {
 
@@ -54,6 +54,7 @@ public interface BoardService {
 	// ---------------------------------------------
 	// 댓글 서비스
 	
+	int insertReply(ReplyDTO reply, HttpSession session);
 	
 	
 	
